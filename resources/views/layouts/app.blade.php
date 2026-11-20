@@ -25,11 +25,14 @@
         (function () {
             try {
                 var stored = localStorage.getItem('wrcs-theme');
+                var accent = localStorage.getItem('wrcs-accent');
                 document.documentElement.classList.add('js');
                 var system = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
                 document.documentElement.dataset.theme = (stored === 'light' || stored === 'dark') ? stored : system;
+                document.documentElement.dataset.accent = ['blue', 'pink', 'purple', 'red'].includes(accent) ? accent : 'green';
             } catch (e) {
                 document.documentElement.dataset.theme = 'dark';
+                document.documentElement.dataset.accent = 'green';
             }
         })();
     </script>

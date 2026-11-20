@@ -1,7 +1,7 @@
 # wrcs.ops
 
 Портфолио DevOps / SRE-инженера: профиль, кейсы, интерактивный рейтинг, инфографика,
-тёмная/светлая темы и два языка (RU / EN). Идентичность на сайте — только бренд
+тёмная/светлая темы, пять акцентных палитр и два языка (RU / EN). Идентичность на сайте — только бренд
 **wrcs.ops**, персональных имени и фамилии в проекте нет.
 
 - **Laravel 13**
@@ -27,7 +27,7 @@ app/
     helpers.php              loc(), loc_lines(), count_label(), years_phrase()
 data/
   profile.json               бренд, роль, тексты, навыки, опыт, KPI
-  projects.json              9 кейсов
+  projects.json              12 кейсов
   ratings.json               голоса (runtime, в git не входит)
 lang/{ru,en}/ui.php          подписи интерфейса
 resources/views/             layout, главная, кейс, 404, Blade-компоненты
@@ -221,7 +221,7 @@ tar czf ~/wrcs-backup-$(date +%F).tgz -C /var/www/wrcs.su data .env
 docker compose exec app php artisan test
 ```
 
-15 тестов: рендер главной и кейса, RU/EN, 404, валидация и дедупликация оценок,
+16 тестов: рендер главной и кейса, RU/EN, 404, акцентная тема, валидация и дедупликация оценок,
 атомарность `JsonFile`, агрегация гистограммы. Тесты используют временные каталоги
 и не трогают `data/`.
 
@@ -233,6 +233,8 @@ docker compose exec app php artisan test
 - **Кейсы** — `data/projects.json`; обложки — `public/assets/img/covers/{slug}.svg`.
 - **Бренд в логотипе/футере** — `PORTFOLIO_BRAND` в `.env` (по умолчанию `wrcs.ops`).
 - **Цвета и типографика** — токены в начале `public/assets/css/app.css`.
+- **Акцентная тема** — круглая кнопка слева от переключателя светлой/тёмной темы:
+  `green`, `blue-cyan`, `pink-magenta`, `purple`, `red`. Выбор хранится в `localStorage` (`wrcs-accent`).
 - **Порядок фильтров портфолио** — `config/portfolio.php` → `filters.stack_priority`.
 
 ---

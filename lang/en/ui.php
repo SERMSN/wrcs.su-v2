@@ -5,6 +5,22 @@ return [
     'menu' => 'Menu',
     'theme' => 'Toggle theme',
     'lang' => 'Language',
+    'accent' => [
+        'label' => 'Interface colour',
+        'title' => 'Accent',
+        'hint' => 'Set the mood — calm to loud.',
+        'green' => 'Green',
+        'green_hint' => 'original / wrcs',
+        'blue' => 'Blue-cyan',
+        'blue_hint' => 'sky / cyan',
+        'pink' => 'Pink-magenta',
+        'pink_hint' => 'magenta / violet',
+        'purple' => 'Purple',
+        'purple_hint' => 'violet / fuchsia',
+        'red' => 'Red',
+        'red_hint' => 'crimson / ember',
+        'foot' => 'Your choice is saved in this browser',
+    ],
     'logo_home' => 'Back to home',
 
     'nav' => [

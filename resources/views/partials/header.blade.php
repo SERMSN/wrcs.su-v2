@@ -12,6 +12,7 @@
 
         <div class="header__tools">
             <x-lang-switch />
+            <x-accent-switcher />
             <x-theme-toggle />
 
             <button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false"

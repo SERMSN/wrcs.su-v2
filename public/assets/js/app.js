@@ -48,6 +48,133 @@
     }
 
     /* ---------------------------------------------------------------------
+     * Accent picker
+     * ------------------------------------------------------------------- */
+
+    const accentPicker = document.querySelector('[data-accent-picker]');
+    const accentToggle = document.querySelector('[data-accent-toggle]');
+    const accentMenu = document.querySelector('[data-accent-menu]');
+    const accentOptions = Array.from(document.querySelectorAll('[data-accent-option]'));
+    const accentNames = ['green', 'blue', 'pink', 'purple', 'red'];
+
+    function applyAccent(accent, persist = true) {
+        if (!accentNames.includes(accent)) {
+            accent = 'green';
+        }
+
+        root.dataset.accent = accent;
+
+        if (persist) {
+            store.set('wrcs-accent', accent);
+        }
+
+        let current = null;
+
+        accentOptions.forEach((option) => {
+            const active = option.dataset.accentOption === accent;
+            option.classList.toggle('is-active', active);
+            option.setAttribute('aria-checked', active ? 'true' : 'false');
+
+            if (active) {
+                current = option;
+            }
+        });
+
+        if (accentToggle && current) {
+            const label = `${accentToggle.dataset.accentPrefix || ''}: ${current.dataset.accentLabel || ''}`;
+            accentToggle.setAttribute('aria-label', label);
+            accentToggle.setAttribute('title', label);
+        }
+    }
+
+    function openAccentMenu() {
+        if (!accentMenu || !accentToggle) {
+            return;
+        }
+
+        if (document.body.classList.contains('menu-open')) {
+            closeMenu();
+        }
+
+        accentMenu.hidden = false;
+        accentMenu.setAttribute('aria-hidden', 'false');
+        accentToggle.setAttribute('aria-expanded', 'true');
+
+        const active = accentMenu.querySelector('.accent-option.is-active');
+        window.requestAnimationFrame(() => active?.focus());
+    }
+
+    function closeAccentMenu(focusToggle = false) {
+        if (!accentMenu || !accentToggle) {
+            return;
+        }
+
+        accentMenu.hidden = true;
+        accentMenu.setAttribute('aria-hidden', 'true');
+        accentToggle.setAttribute('aria-expanded', 'false');
+
+        if (focusToggle) {
+            accentToggle.focus();
+        }
+    }
+
+    if (accentPicker && accentToggle && accentMenu) {
+        applyAccent(root.dataset.accent || 'green', false);
+
+        accentToggle.addEventListener('click', () => {
+            if (accentMenu.hidden) {
+                openAccentMenu();
+            } else {
+                closeAccentMenu();
+            }
+        });
+
+        accentOptions.forEach((option) => {
+            option.addEventListener('click', () => {
+                applyAccent(option.dataset.accentOption || 'green');
+                closeAccentMenu(true);
+            });
+        });
+
+        accentMenu.addEventListener('keydown', (event) => {
+            const items = accentOptions;
+            const index = items.indexOf(document.activeElement);
+
+            if (event.key === 'Escape') {
+                event.stopPropagation();
+                closeAccentMenu(true);
+                return;
+            }
+
+            if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
+                return;
+            }
+
+            event.preventDefault();
+
+            let next = index;
+
+            if (event.key === 'ArrowDown') {
+                next = (index + 1) % items.length;
+            } else if (event.key === 'ArrowUp') {
+                next = (index - 1 + items.length) % items.length;
+            } else if (event.key === 'Home') {
+                next = 0;
+            } else if (event.key === 'End') {
+                next = items.length - 1;
+            }
+
+            items[next]?.focus();
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!accentMenu.hidden && !accentPicker.contains(event.target)) {
+                closeAccentMenu();
+            }
+        });
+    }
+
+    /* ---------------------------------------------------------------------
      * Header state, mobile menu, back-to-top
      * ------------------------------------------------------------------- */
 
@@ -83,6 +210,10 @@
         menuToggle.addEventListener('click', () => {
             const open = document.body.classList.toggle('menu-open');
             menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+
+            if (open && accentMenu && !accentMenu.hidden) {
+                closeAccentMenu();
+            }
         });
     }
 
@@ -93,6 +224,10 @@
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') {
             closeMenu();
+
+            if (accentMenu && !accentMenu.hidden) {
+                closeAccentMenu(true);
+            }
         }
     });
 

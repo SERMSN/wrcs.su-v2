@@ -45,6 +45,63 @@
     color-scheme: light;
 }
 
+/* Interface accent palettes */
+:root[data-theme='dark'][data-accent='blue'] {
+    --accent: #7dd3fc;
+    --accent-2: #67e8f9;
+    --accent-ink: #04141f;
+    --accent-soft: rgba(125, 211, 252, 0.12);
+}
+
+:root[data-theme='light'][data-accent='blue'] {
+    --accent: #0369a1;
+    --accent-2: #0e7490;
+    --accent-ink: #ffffff;
+    --accent-soft: rgba(3, 105, 161, 0.10);
+}
+
+:root[data-theme='dark'][data-accent='pink'] {
+    --accent: #f472b6;
+    --accent-2: #c084fc;
+    --accent-ink: #1f0714;
+    --accent-soft: rgba(244, 114, 182, 0.12);
+}
+
+:root[data-theme='light'][data-accent='pink'] {
+    --accent: #be185d;
+    --accent-2: #7e22ce;
+    --accent-ink: #ffffff;
+    --accent-soft: rgba(190, 24, 93, 0.10);
+}
+
+:root[data-theme='dark'][data-accent='purple'] {
+    --accent: #a78bfa;
+    --accent-2: #e879f9;
+    --accent-ink: #140b24;
+    --accent-soft: rgba(167, 139, 250, 0.12);
+}
+
+:root[data-theme='light'][data-accent='purple'] {
+    --accent: #6d28d9;
+    --accent-2: #a21caf;
+    --accent-ink: #ffffff;
+    --accent-soft: rgba(109, 40, 217, 0.10);
+}
+
+:root[data-theme='dark'][data-accent='red'] {
+    --accent: #f87171;
+    --accent-2: #fb923c;
+    --accent-ink: #210708;
+    --accent-soft: rgba(248, 113, 113, 0.12);
+}
+
+:root[data-theme='light'][data-accent='red'] {
+    --accent: #b91c1c;
+    --accent-2: #dc2626;
+    --accent-ink: #ffffff;
+    --accent-soft: rgba(185, 28, 28, 0.10);
+}
+
 *,
 *::before,
 *::after {
@@ -521,6 +578,260 @@ p {
 
 .menu-btn {
     display: none;
+}
+
+/* Accent picker */
+.accent-picker {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.accent-picker__btn {
+    position: relative;
+}
+
+.accent-picker__orb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: conic-gradient(from 210deg, var(--accent), var(--accent-2), var(--accent));
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.35),
+        0 0 0 3px color-mix(in srgb, var(--accent) 12%, transparent);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.accent-picker__btn:hover .accent-picker__orb {
+    transform: scale(1.08);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.5),
+        0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.accent-picker__chev {
+    position: absolute;
+    right: 3px;
+    bottom: 4px;
+    width: 7px;
+    height: 7px;
+    color: var(--muted);
+}
+
+.accent-picker__chev svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.accent-picker__menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    z-index: 80;
+    width: 278px;
+    padding: 0.55rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 18px;
+    background: color-mix(in srgb, var(--panel) 96%, transparent);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(22px) saturate(140%);
+    -webkit-backdrop-filter: blur(22px) saturate(140%);
+    max-height: calc(100dvh - 100px);
+    overflow-y: auto;
+    transform-origin: top right;
+    animation: accent-menu-in 0.18s ease both;
+}
+
+.accent-picker__menu[hidden] {
+    display: none;
+}
+
+@keyframes accent-menu-in {
+    from {
+        opacity: 0;
+        transform: translateY(-5px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.accent-picker__menu::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    right: 14px;
+    width: 10px;
+    height: 10px;
+    background: var(--panel);
+    border-top: 1px solid var(--line-strong);
+    border-left: 1px solid var(--line-strong);
+    transform: rotate(45deg);
+}
+
+.accent-picker__title {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0.35rem 0.45rem 0.55rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.accent-picker__title::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.accent-picker__hint {
+    margin: -0.2rem 0.45rem 0.55rem;
+    font-size: 0.66rem;
+    line-height: 1.4;
+    color: var(--muted-2);
+}
+
+.accent-picker__list {
+    display: grid;
+    gap: 0.2rem;
+}
+
+.accent-option {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    width: 100%;
+    padding: 0.55rem 0.5rem;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background: transparent;
+    color: var(--text);
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.18s, border-color 0.18s;
+}
+
+.accent-option:hover,
+.accent-option:focus-visible {
+    border-color: color-mix(in srgb, var(--accent) 24%, transparent);
+    background: color-mix(in srgb, var(--accent) 7%, transparent);
+}
+
+.accent-option.is-active {
+    border-color: color-mix(in srgb, var(--accent) 32%, transparent);
+    background: var(--accent-soft);
+}
+
+.accent-option__swatch {
+    flex: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.28),
+        0 4px 12px -6px rgba(0, 0, 0, 0.8);
+}
+
+.accent-option__swatch--green {
+    background: conic-gradient(from 210deg, #3ee6a4, #6aa8ff, #0b7d57, #3ee6a4);
+}
+
+.accent-option__swatch--blue {
+    background: conic-gradient(from 210deg, #7dd3fc, #38bdf8, #0369a1, #7dd3fc);
+}
+
+.accent-option__swatch--pink {
+    background: conic-gradient(from 210deg, #f472b6, #c084fc, #be185d, #f472b6);
+}
+
+.accent-option__swatch--purple {
+    background: conic-gradient(from 210deg, #a78bfa, #e879f9, #6d28d9, #a78bfa);
+}
+
+.accent-option__swatch--red {
+    background: conic-gradient(from 210deg, #f87171, #fb923c, #b91c1c, #f87171);
+}
+
+.accent-option__copy {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.08rem;
+    min-width: 0;
+}
+
+.accent-option__name {
+    font-size: 0.83rem;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.accent-option__hint {
+    font-size: 0.56rem;
+    letter-spacing: 0.07em;
+    color: var(--muted-2);
+}
+
+.accent-option__check {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0;
+    transform: scale(0.65);
+    transition: opacity 0.18s, transform 0.18s;
+}
+
+.accent-option.is-active .accent-option__check {
+    opacity: 1;
+    transform: none;
+}
+
+.accent-picker__foot {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 0.45rem;
+    padding: 0.55rem 0.5rem 0.25rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.55rem;
+    letter-spacing: 0.05em;
+    color: var(--muted-2);
+}
+
+.accent-picker__dots {
+    display: flex;
+    gap: 3px;
+}
+
+.accent-picker__dots i {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+.accent-picker__dots i:nth-child(2) {
+    background: var(--accent-2);
+}
+
+.accent-picker__dots i:nth-child(3) {
+    background: color-mix(in srgb, var(--accent) 45%, var(--accent-2));
 }
 
 /* ==========================================================================
@@ -2539,6 +2850,7 @@ html.js .work__grid .card:nth-child(6) {
         margin-left: auto;
     }
 
+
     .about__grid,
     .skills__grid,
     .case__grid {
@@ -2648,11 +2960,42 @@ html.js .work__grid .card:nth-child(6) {
     }
 
     .logo__text {
-        font-size: 0.98rem;
+        font-size: 0.94rem;
+    }
+
+    .header__tools {
+        gap: 0.35rem;
+        margin-left: 0.6rem;
+    }
+
+    .header__tools .icon-btn {
+        width: 34px;
+        height: 34px;
+    }
+
+    .accent-picker__orb {
+        width: 18px;
+        height: 18px;
+    }
+
+    .accent-picker__menu {
+        position: fixed;
+        top: 68px;
+        left: 1rem;
+        right: 1rem;
+        width: auto;
+        max-height: calc(100dvh - 84px);
+        overflow-y: auto;
+        background: var(--panel);
+        transform-origin: top center;
+    }
+
+    .accent-picker__menu::before {
+        display: none;
     }
 
     .lang__item {
-        padding: 0.3rem 0.42rem;
+        padding: 0.3rem 0.38rem;
     }
 
     .terminal__body {
@@ -2670,6 +3013,17 @@ html.js .work__grid .card:nth-child(6) {
     .rate__star svg {
         width: 26px;
         height: 26px;
+    }
+}
+
+@media (max-width: 380px) {
+    .logo__text {
+        display: none;
+    }
+
+    .header__tools {
+        gap: 0.3rem;
+        margin-left: 0.4rem;
     }
 }
 

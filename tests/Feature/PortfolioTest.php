@@ -48,6 +48,19 @@ class PortfolioTest extends TestCase
             ->assertSee('wrcs-theme', false);
     }
 
+    public function test_accent_picker_is_available(): void
+    {
+        $this->get('/')
+            ->assertOk()
+            ->assertSee('data-accent-toggle', false)
+            ->assertSee('data-accent-option="green"', false)
+            ->assertSee('data-accent-option="blue"', false)
+            ->assertSee('data-accent-option="pink"', false)
+            ->assertSee('data-accent-option="purple"', false)
+            ->assertSee('data-accent-option="red"', false)
+            ->assertSee('wrcs-accent', false);
+    }
+
     public function test_the_language_switch_persists_the_locale(): void
     {
         $this->get('/lang/en')->assertRedirect();

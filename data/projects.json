@@ -614,6 +614,213 @@
         ]
       },
       "cover": "/assets/img/covers/on-call-2.svg"
+    },
+    {
+      "slug": "linux-fleet",
+      "featured": false,
+      "year": 2023,
+      "client": "Sibline Cloud",
+      "accent": "#7dd3fc",
+      "title": {
+        "ru": "180 серверов без снежинок",
+        "en": "180 servers, zero snowflakes"
+      },
+      "summary": {
+        "ru": "Ansible, golden image и SSH CA вместо ручных правок: одинаковый Debian на всём флоте, провижининг за 6 минут.",
+        "en": "Ansible, a golden image and SSH CA instead of hand edits: the same Debian across the fleet, provisioned in six minutes."
+      },
+      "description": {
+        "ru": [
+          "Флот рос стихийно: 180 машин в трёх дата-центрах, у каждой свой набор пакетов, свой sysctl и свой «временный» cron. Половина инцидентов начиналась с фразы «а на этой машине работает иначе».",
+          "Собрал golden image с preseed, перевёл конфигурацию в Ansible-роли, выдал доступ через SSH CA и убрал ручные правки. Дрейф теперь ловится drift-проверкой, а новый хост поднимается за шесть минут — без ssh-сессии и чек-листа."
+        ],
+        "en": [
+          "The fleet grew organically: 180 machines across three data centres, each with its own package set, sysctl values and a 'temporary' cron. Half of the incidents started with 'well, this box behaves differently'.",
+          "I built a preseeded golden image, moved configuration into Ansible roles, switched access to an SSH CA and banned hand edits. Drift checks catch deviations, and a new host provisions in six minutes — no SSH session, no checklist."
+        ]
+      },
+      "role": {
+        "ru": "Linux-флот, Ansible, golden image",
+        "en": "Linux fleet, Ansible, golden image"
+      },
+      "stack": [
+        "Debian",
+        "Ansible",
+        "systemd",
+        "OpenSSH",
+        "Prometheus"
+      ],
+      "metrics": [
+        {
+          "value": "180",
+          "label": {
+            "ru": "серверов",
+            "en": "servers"
+          }
+        },
+        {
+          "value": "6",
+          "label": {
+            "ru": "минут на провижининг",
+            "en": "min provisioning"
+          }
+        },
+        {
+          "value": "0",
+          "label": {
+            "ru": "снежинок",
+            "en": "snowflakes"
+          }
+        }
+      ],
+      "rating": {
+        "histogram": [
+          17,
+          6,
+          2,
+          0,
+          0
+        ]
+      },
+      "cover": "/assets/img/covers/linux-fleet.svg"
+    },
+    {
+      "slug": "backup-restore",
+      "featured": false,
+      "year": 2024,
+      "client": "Redpeak",
+      "accent": "#f97316",
+      "title": {
+        "ru": "Бэкапы, которые действительно восстанавливаются",
+        "en": "Backups that actually restore"
+      },
+      "summary": {
+        "ru": "Restic, 3-2-1 и ежеквартальные учения: 4 ТБ данных, 100% успешных восстановлений, RTO 18 минут.",
+        "en": "Restic, 3-2-1 and quarterly drills: 4 TB of data, 100% successful restores, 18-minute RTO."
+      },
+      "description": {
+        "ru": [
+          "Бэкапы делались, но целостность никто не проверял. Однажды выяснилось, что архив с базой три месяца писался в пустоту, а инструкция по восстановлению устарела на две инфраструктурные итерации.",
+          "Перевёл бэкапы на restic с шифрованием и схемой 3-2-1, добавил автоматическую restore-проверку и ежеквартальные учения на отдельном стенде. Теперь восстановление — отработанная операция с таймером, а не ночной квест."
+        ],
+        "en": [
+          "Backups were running, but nobody checked their integrity. One day we found that the database archive had been writing into the void for three months, and the restore runbook was two infrastructure iterations out of date.",
+          "I moved backups to restic with encryption and a 3-2-1 layout, added an automated restore check and quarterly drills on a separate stand. Restoring is now a timed, practised operation — not a nightly quest."
+        ]
+      },
+      "role": {
+        "ru": "Бэкапы, DR, Linux",
+        "en": "Backups, DR, Linux"
+      },
+      "stack": [
+        "Restic",
+        "systemd",
+        "S3",
+        "PostgreSQL",
+        "Ansible"
+      ],
+      "metrics": [
+        {
+          "value": "100%",
+          "label": {
+            "ru": "учений с восстановлением",
+            "en": "restore drills"
+          }
+        },
+        {
+          "value": "4 ТБ",
+          "label": {
+            "ru": "под защитой",
+            "en": "protected"
+          }
+        },
+        {
+          "value": "18",
+          "label": {
+            "ru": "минут RTO",
+            "en": "min RTO"
+          }
+        }
+      ],
+      "rating": {
+        "histogram": [
+          19,
+          5,
+          2,
+          1,
+          0
+        ]
+      },
+      "cover": "/assets/img/covers/backup-restore.svg"
+    },
+    {
+      "slug": "ubuntu-migration",
+      "featured": false,
+      "year": 2025,
+      "client": "Forge Studio",
+      "accent": "#e95420",
+      "title": {
+        "ru": "CentOS 7 → Ubuntu 24.04 LTS без сюрпризов",
+        "en": "CentOS 7 → Ubuntu 24.04 LTS, no surprises"
+      },
+      "summary": {
+        "ru": "Перевёл 64 хоста на Ubuntu 24.04 LTS: systemd-юниты, пакеты и ядро проверены, откат на каждом шаге.",
+        "en": "Moved 64 hosts to Ubuntu 24.04 LTS: systemd units, packages and kernel verified, rollback at every step."
+      },
+      "description": {
+        "ru": [
+          "CentOS 7 заканчивался, а на хостах жили самописные systemd-юниты, старые репозитории и патчи ядра, про которые не помнил никто. Обновляться «как получится» было нельзя.",
+          "Собрал инвентарь, проверил совместимость пакетов с apt, переписал юниты и прогнал каждый хост на staging. Миграция шла волнами с канареечной группой и откатом на снапшот; 64 хоста переехали на Ubuntu 24.04 LTS без простоя."
+        ],
+        "en": [
+          "CentOS 7 was reaching end of life, while the hosts carried hand-written systemd units, stale repositories and kernel patches nobody remembered. Upgrading \"whatever happens\" was not an option.",
+          "I inventoried the estate, checked package compatibility with apt, rewrote the units and validated every host in staging. The migration ran in waves with a canary group and snapshot rollback; 64 hosts moved to Ubuntu 24.04 LTS without downtime."
+        ]
+      },
+      "role": {
+        "ru": "Миграция ОС, Ubuntu, systemd",
+        "en": "OS migration, Ubuntu, systemd"
+      },
+      "stack": [
+        "CentOS 7",
+        "Ubuntu 24.04 LTS",
+        "systemd",
+        "Ansible",
+        "LVM"
+      ],
+      "metrics": [
+        {
+          "value": "64",
+          "label": {
+            "ru": "хоста",
+            "en": "hosts"
+          }
+        },
+        {
+          "value": "0",
+          "label": {
+            "ru": "минут простоя",
+            "en": "min downtime"
+          }
+        },
+        {
+          "value": "100%",
+          "label": {
+            "ru": "юнитов перенесено",
+            "en": "units migrated"
+          }
+        }
+      ],
+      "rating": {
+        "histogram": [
+          18,
+          6,
+          2,
+          0,
+          0
+        ]
+      },
+      "cover": "/assets/img/covers/ubuntu-migration.svg"
     }
   ]
 }

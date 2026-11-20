@@ -5,6 +5,22 @@ return [
     'menu' => 'Меню',
     'theme' => 'Переключить тему',
     'lang' => 'Язык',
+    'accent' => [
+        'label' => 'Цвет интерфейса',
+        'title' => 'Акцент',
+        'hint' => 'Настроение интерфейса — от спокойного до дерзкого.',
+        'green' => 'Зелёный',
+        'green_hint' => 'original / wrcs',
+        'blue' => 'Сине-голубой',
+        'blue_hint' => 'sky / cyan',
+        'pink' => 'Розово-пурпурный',
+        'pink_hint' => 'magenta / violet',
+        'purple' => 'Фиолетовый',
+        'purple_hint' => 'violet / fuchsia',
+        'red' => 'Красный',
+        'red_hint' => 'crimson / ember',
+        'foot' => 'Выбор запомнится в браузере',
+    ],
     'logo_home' => 'На главную',
 
     'nav' => [
