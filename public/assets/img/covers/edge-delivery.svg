@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none" role="img" aria-label="Redpeak — case cover">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="800" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#070b10"/>
+      <stop offset="1" stop-color="#152435"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(300 250) rotate(45) scale(520)">
+      <stop stop-color="#386091" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#386091" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1010 140) rotate(120) scale(380)">
+      <stop stop-color="#60a5fa" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vignette" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(600 400) rotate(90) scale(640 760)">
+      <stop stop-color="#04070b" stop-opacity="0"/>
+      <stop offset="1" stop-color="#04070b" stop-opacity="0.55"/>
+    </radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" stroke="#dce9ff" stroke-opacity="0.05"/>
+    </pattern>
+    <linearGradient id="fade" x1="120" y1="0" x2="1080" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#60a5fa" stop-opacity="0"/>
+      <stop offset="0.25" stop-color="#60a5fa" stop-opacity="0.9"/>
+      <stop offset="0.75" stop-color="#60a5fa" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect width="1200" height="800" fill="url(#grid)"/>
+  <rect width="1200" height="800" fill="url(#glow)"/>
+  <rect width="1200" height="800" fill="url(#glow2)"/>
+
+  <circle cx="1010" cy="150" r="150" stroke="#60a5fa" stroke-opacity="0.16"/>
+  <circle cx="1010" cy="150" r="230" stroke="#60a5fa" stroke-opacity="0.10"/>
+  <circle cx="1010" cy="150" r="320" stroke="#60a5fa" stroke-opacity="0.06"/>
+
+  <line x1="377" y1="554" x2="891" y2="539" stroke="#60a5fa" stroke-opacity="0.12" stroke-width="1"/><line x1="377" y1="554" x2="377" y2="554" stroke="#60a5fa" stroke-opacity="0.12" stroke-width="1"/><line x1="564" y1="403" x2="891" y2="539" stroke="#60a5fa" stroke-opacity="0.12" stroke-width="1"/>
+  <path d="M175 467 C245 418, 234 551, 304 502 C374 453, 307 603, 377 554 C447 505, 494 452, 564 403 C634 354, 576 394, 646 345 C716 296, 745 447, 815 398 C885 349, 821 588, 891 539 C961 490, 984 566, 1054 517" stroke="url(#fade)" stroke-width="1.6" stroke-dasharray="7 9" stroke-linecap="round"/>
+  <circle cx="175" cy="467" r="30" fill="#60a5fa" fill-opacity="0.10"/><circle cx="175" cy="467" r="9.0" fill="none" stroke="#60a5fa" stroke-opacity="0.55"/><circle cx="175" cy="467" r="3.5" fill="#60a5fa"/><circle cx="304" cy="502" r="30" fill="#60a5fa" fill-opacity="0.10"/><circle cx="304" cy="502" r="9.0" fill="none" stroke="#60a5fa" stroke-opacity="0.55"/><circle cx="304" cy="502" r="3.5" fill="#60a5fa"/><circle cx="377" cy="554" r="30" fill="#60a5fa" fill-opacity="0.10"/><circle cx="377" cy="554" r="9.0" fill="none" stroke="#60a5fa" stroke-opacity="0.55"/><circle cx="377" cy="554" r="3.5" fill="#60a5fa"/><circle cx="564" cy="403" r="30" fill="#60a5fa" fill-opacity="0.10"/><circle cx="564" cy="403" r="9.0" fill="none" stroke="#60a5fa" stroke-opacity="0.55"/><circle cx="564" cy="403" r="3.5" fill="#60a5fa"/><circle cx="646" cy="345" r="51" fill="#60a5fa" fill-opacity="0.10"/><circle cx="646" cy="345" r="15.0" fill="none" stroke="#60a5fa" stroke-opacity="0.55"/><circle cx="646" cy="345" r="5.5" fill="#60a5fa"/><circle cx="815" cy="398" r="30" fill="#60a5fa" fill-opacity="0.10"/><circle cx="815" cy="398" r="9.0" fill="none" stroke="#60a5fa" stroke-opacity="0.55"/><circle cx="815" cy="398" r="3.5" fill="#60a5fa"/><circle cx="891" cy="539" r="30" fill="#60a5fa" fill-opacity="0.10"/><circle cx="891" cy="539" r="9.0" fill="none" stroke="#60a5fa" stroke-opacity="0.55"/><circle cx="891" cy="539" r="3.5" fill="#60a5fa"/><circle cx="1054" cy="517" r="30" fill="#60a5fa" fill-opacity="0.10"/><circle cx="1054" cy="517" r="9.0" fill="none" stroke="#60a5fa" stroke-opacity="0.55"/><circle cx="1054" cy="517" r="3.5" fill="#60a5fa"/>
+
+  <text x="1180" y="742" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="230" font-weight="700" fill="#60a5fa" fill-opacity="0.07" letter-spacing="-14">08</text>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" letter-spacing="3">
+    <circle cx="66" cy="62" r="4" fill="#60a5fa"/>
+    <text x="82" y="68" font-size="13" fill="#dbe6f4" fill-opacity="0.65">WRCS.OPS</text>
+    <text x="1134" y="68" text-anchor="end" font-size="12" fill="#dbe6f4" fill-opacity="0.45">CASE / 2024</text>
+    <text x="66" y="756" font-size="11" fill="#60a5fa" fill-opacity="0.75">// Redpeak</text>
+  </g>
+
+  <rect width="1200" height="800" fill="url(#vignette)"/>
+  <rect x="0.5" y="0.5" width="1199" height="799" stroke="#dce9ff" stroke-opacity="0.08"/>
+</svg>

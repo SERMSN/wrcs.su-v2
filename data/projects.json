@@ -1,0 +1,619 @@
+{
+  "projects": [
+    {
+      "slug": "zero-downtime-migration",
+      "featured": true,
+      "year": 2026,
+      "client": "Sibline Cloud",
+      "accent": "#36e6a8",
+      "title": {
+        "ru": "Переезд 42 сервисов без простоя",
+        "en": "Migrating 42 services with zero downtime"
+      },
+      "summary": {
+        "ru": "Пошаговая миграция монолитного кластера в EKS: 42 сервиса, 0 минут простоя, откат на каждом шаге.",
+        "en": "A step-by-step move from a hand-built cluster to EKS: 42 services, zero minutes of downtime, a rollback at every step."
+      },
+      "description": {
+        "ru": [
+          "Кластер жил на EC2, собранных вручную, и обновлялся по ночам. Любой релиз был событием: окно, дежурный, чек-лист на две страницы. Задача звучала просто — переехать в EKS, ничего не уронив.",
+          "Собрал карту зависимостей, разбил переезд на 42 независимых шага и оформил каждый как обратимую операцию: dual-write, теневой трафик, переключение DNS. Первые сервисы прошли без замечаний, последние — под полной нагрузкой в чёрную пятницу. Простоя не было ни минуты."
+        ],
+        "en": [
+          "The cluster lived on hand-built EC2 instances and was updated at night. Every release was an event: a window, an on-call engineer, a two-page checklist. The brief sounded simple — move to EKS without dropping anything.",
+          "I mapped the dependencies, split the migration into 42 independent steps and made each one reversible: dual writes, shadow traffic, DNS cutover. The first services went smoothly, the last ones under full Black Friday load. Not a single minute of downtime."
+        ]
+      },
+      "role": {
+        "ru": "Архитектура переезда, IaC, runbook-и",
+        "en": "Migration architecture, IaC, runbooks"
+      },
+      "stack": [
+        "Kubernetes",
+        "EKS",
+        "Terraform",
+        "Argo CD",
+        "Helm"
+      ],
+      "metrics": [
+        {
+          "value": "0",
+          "label": {
+            "ru": "минут простоя",
+            "en": "minutes downtime"
+          }
+        },
+        {
+          "value": "−63%",
+          "label": {
+            "ru": "время релиза",
+            "en": "release time"
+          }
+        },
+        {
+          "value": "42",
+          "label": {
+            "ru": "сервиса",
+            "en": "services"
+          }
+        }
+      ],
+      "rating": {
+        "histogram": [
+          27,
+          5,
+          0,
+          0,
+          0
+        ]
+      },
+      "cover": "/assets/img/covers/zero-downtime-migration.svg"
+    },
+    {
+      "slug": "pipeline-2",
+      "featured": true,
+      "year": 2025,
+      "client": "Sibline Cloud",
+      "accent": "#6aa8ff",
+      "title": {
+        "ru": "Pipeline 2.0: 40 минут вместо недели",
+        "en": "Pipeline 2.0: 40 minutes instead of a week"
+      },
+      "summary": {
+        "ru": "Переписал CI/CD с нуля: параллельные стадии, кэш зависимостей и e2e-тесты, которые не флакают.",
+        "en": "Rebuilt CI/CD from scratch: parallel stages, dependency caching and e2e tests that don't flake."
+      },
+      "description": {
+        "ru": [
+          "Старый пайплайн был линейным: 47 минут на сборку, ещё 20 на тесты, а e2e падали в трети запусков. Разработчики обходили его ветками и ручными сборками — и это было честной реакцией.",
+          "Разнёс сборку на параллельные стадии, вынес общие слои в кэш, заменил «плавающие» фикстуры на детерминированные данные. Добавил правило: пайплайн красный — мержить нельзя. Lead time упал с недели до 40 минут, а флаки — на 71%."
+        ],
+        "en": [
+          "The old pipeline was linear: 47 minutes to build, 20 more to test, and e2e suites failed one run in three. Engineers worked around it with long-lived branches and manual builds — a fair response, honestly.",
+          "I split the build into parallel stages, cached shared layers and replaced drifting fixtures with deterministic data. Added one rule: red pipeline, no merges. Lead time dropped from a week to 40 minutes, flakes by 71%."
+        ]
+      },
+      "role": {
+        "ru": "CI/CD архитектура, миграция 60 репозиториев",
+        "en": "CI/CD architecture, 60 repositories migrated"
+      },
+      "stack": [
+        "GitLab CI",
+        "Docker",
+        "Testcontainers",
+        "Bash"
+      ],
+      "metrics": [
+        {
+          "value": "40",
+          "label": {
+            "ru": "минут lead time",
+            "en": "min lead time"
+          }
+        },
+        {
+          "value": "420",
+          "label": {
+            "ru": "релизов в год",
+            "en": "releases a year"
+          }
+        },
+        {
+          "value": "−71%",
+          "label": {
+            "ru": "флаки-тесты",
+            "en": "flaky tests"
+          }
+        }
+      ],
+      "rating": {
+        "histogram": [
+          23,
+          6,
+          2,
+          0,
+          0
+        ]
+      },
+      "cover": "/assets/img/covers/pipeline-2.svg"
+    },
+    {
+      "slug": "observability-stack",
+      "featured": true,
+      "year": 2024,
+      "client": "Redpeak",
+      "accent": "#ffb020",
+      "title": {
+        "ru": "Наблюдаемость как продукт",
+        "en": "Observability as a product"
+      },
+      "summary": {
+        "ru": "Prometheus, Grafana, Loki и Tempo вместо трёх вендоров: единый язык метрик, трейсов и логов.",
+        "en": "Prometheus, Grafana, Loki and Tempo instead of three vendors: one language for metrics, traces and logs."
+      },
+      "description": {
+        "ru": [
+          "Три команды смотрели в три разных системы и спорили, чей дашборд прав. Инциденты искали по памяти, а не по данным. MTTR держался на 47 минутах и не двигался.",
+          "Свёл всё к одному стеку: SLO-борды на каждый сервис, корреляция трейсов и логов по trace-id, алерты только на выгорание error budget. Дежурный перестал открывать пять вкладок — теперь хватает одной. MTTR упал до 18 минут."
+        ],
+        "en": [
+          "Three teams stared at three different systems and argued about whose dashboard was right. Incidents were investigated from memory, not data. MTTR sat at 47 minutes and refused to move.",
+          "I consolidated everything into one stack: SLO boards per service, trace-to-log correlation via trace-id, and alerts only on error-budget burn. On-call stopped opening five tabs — one is enough now. MTTR dropped to 18 minutes."
+        ]
+      },
+      "role": {
+        "ru": "Дизайн стека, SLO-практики, миграция дашбордов",
+        "en": "Stack design, SLO practice, dashboard migration"
+      },
+      "stack": [
+        "Prometheus",
+        "Grafana",
+        "Loki",
+        "Tempo",
+        "Alertmanager"
+      ],
+      "metrics": [
+        {
+          "value": "18",
+          "label": {
+            "ru": "минут MTTR",
+            "en": "min MTTR"
+          }
+        },
+        {
+          "value": "100%",
+          "label": {
+            "ru": "сервисов с SLO",
+            "en": "services with SLOs"
+          }
+        },
+        {
+          "value": "3 → 1",
+          "label": {
+            "ru": "инструмент",
+            "en": "tools"
+          }
+        }
+      ],
+      "rating": {
+        "histogram": [
+          22,
+          6,
+          2,
+          0,
+          0
+        ]
+      },
+      "cover": "/assets/img/covers/observability-stack.svg"
+    },
+    {
+      "slug": "finops-cloud",
+      "featured": true,
+      "year": 2024,
+      "client": "Redpeak",
+      "accent": "#c9f26a",
+      "title": {
+        "ru": "FinOps: минус 38% облачного счёта",
+        "en": "FinOps: 38% off the cloud bill"
+      },
+      "summary": {
+        "ru": "Учёт затрат по командам, spot-инстансы и rightsizing без единого деградационного инцидента.",
+        "en": "Cost allocation per team, spot instances and rightsizing with zero degradation incidents."
+      },
+      "description": {
+        "ru": [
+          "Счёт рос быстрее трафика: 92% ресурсов жили без owner-а, а «временные» инстансы работали третий год. Классический сценарий, где никто не виноват и все платят.",
+          "Ввёл теги и бюджеты на уровне команд, вынес stateless-нагрузку на spot с graceful drain, прошёлся по requests/limits и аллокации дисков. Каждое изменение — с нагрузочным тестом. Итог: −38% счёта, $41k экономии в месяц и ни одного инцидента."
+        ],
+        "en": [
+          "The bill grew faster than traffic: 92% of resources had no owner, and 'temporary' instances were entering their third year. The classic scenario where nobody is to blame and everyone pays.",
+          "I introduced tags and budgets at the team level, moved stateless workloads to spot with graceful drain, and tuned requests/limits and disk allocation. Every change went through a load test. Result: 38% off the bill, $41k saved monthly, zero incidents."
+        ]
+      },
+      "role": {
+        "ru": "FinOps-практика, cost allocation, оптимизация",
+        "en": "FinOps practice, cost allocation, optimisation"
+      },
+      "stack": [
+        "AWS",
+        "Karpenter",
+        "Kubecost",
+        "Terraform"
+      ],
+      "metrics": [
+        {
+          "value": "−38%",
+          "label": {
+            "ru": "затраты",
+            "en": "spend"
+          }
+        },
+        {
+          "value": "$41k",
+          "label": {
+            "ru": "экономия в месяц",
+            "en": "saved monthly"
+          }
+        },
+        {
+          "value": "0",
+          "label": {
+            "ru": "деградаций",
+            "en": "degradations"
+          }
+        }
+      ],
+      "rating": {
+        "histogram": [
+          20,
+          7,
+          2,
+          1,
+          0
+        ]
+      },
+      "cover": "/assets/img/covers/finops-cloud.svg"
+    },
+    {
+      "slug": "chaos-engineering",
+      "featured": false,
+      "year": 2025,
+      "client": "Sibline Cloud",
+      "accent": "#ff7a8a",
+      "title": {
+        "ru": "Chaos-инженерия без страха",
+        "en": "Chaos engineering without fear"
+      },
+      "summary": {
+        "ru": "GameDays и 23 сценария отказа: упавший регион, отравленный кэш, разорванный DNS.",
+        "en": "GameDays and 23 failure scenarios: a dead region, a poisoned cache, a broken DNS."
+      },
+      "description": {
+        "ru": [
+          "Отказоустойчивость проверялась только по документации — и документация была оптимистичнее реальности. Нужен был способ узнать правду до того, как её узнают клиенты.",
+          "Запустил регулярные GameDays в staging с реальным трафиком: управляемое отключение зон, инъекция задержек, отравление кэша. Каждая находка превращалась в задачу с owner-ом и дедлайном. За квартал — 23 сценария и ни одного P1-инцидента в продакшене."
+        ],
+        "en": [
+          "Resilience was verified only on paper — and the paper was more optimistic than reality. We needed a way to learn the truth before customers did.",
+          "I started regular GameDays in staging with real traffic: controlled zone blackouts, latency injection, cache poisoning. Every finding became a ticket with an owner and a deadline. In one quarter: 23 scenarios and zero P1 incidents in production."
+        ]
+      },
+      "role": {
+        "ru": "Программа GameDays, сценарии отказов",
+        "en": "GameDay programme, failure scenarios"
+      },
+      "stack": [
+        "Chaos Mesh",
+        "Litmus",
+        "k6",
+        "Grafana"
+      ],
+      "metrics": [
+        {
+          "value": "14",
+          "label": {
+            "ru": "GameDays",
+            "en": "GameDays"
+          }
+        },
+        {
+          "value": "23",
+          "label": {
+            "ru": "сценария",
+            "en": "scenarios"
+          }
+        },
+        {
+          "value": "0",
+          "label": {
+            "ru": "P1 за квартал",
+            "en": "P1s per quarter"
+          }
+        }
+      ],
+      "rating": {
+        "histogram": [
+          18,
+          7,
+          2,
+          0,
+          0
+        ]
+      },
+      "cover": "/assets/img/covers/chaos-engineering.svg"
+    },
+    {
+      "slug": "internal-platform",
+      "featured": false,
+      "year": 2023,
+      "client": "Forge Studio",
+      "accent": "#a78bfa",
+      "title": {
+        "ru": "Внутренняя платформа для 9 команд",
+        "en": "An internal platform for 9 teams"
+      },
+      "summary": {
+        "ru": "Backstage, self-service шаблоны и golden path: от «нужен сервис» до первого деплоя за два дня.",
+        "en": "Backstage, self-service templates and a golden path: from 'we need a service' to first deploy in two days."
+      },
+      "description": {
+        "ru": [
+          "Каждый новый сервис начинался с переписки в чате и копирования чужого репозитория. Онбординг занимал три недели, а половина сервисов не имела owner-а в каталоге — потому что каталога не было.",
+          "Собрал платформу на Backstage: шаблоны сервисов с готовым CI, Helm-чартом и SLO-бордом, каталог с владельцами и scorecards. Новый сервис в продакшене — за два дня, без тикета в инфраструктуру. 80% запросов теперь закрываются self-service."
+        ],
+        "en": [
+          "Every new service started with a chat thread and a copied repo. Onboarding took three weeks, and half the services had no owner in the catalogue — because there was no catalogue.",
+          "I built a Backstage platform: service templates with CI, a Helm chart and an SLO board baked in, plus a catalogue with owners and scorecards. A new service reaches production in two days, no infra ticket needed. 80% of requests are now self-service."
+        ]
+      },
+      "role": {
+        "ru": "Продукт платформы, golden path, DX",
+        "en": "Platform product, golden path, DX"
+      },
+      "stack": [
+        "Backstage",
+        "Crossplane",
+        "Argo CD",
+        "TypeScript"
+      ],
+      "metrics": [
+        {
+          "value": "2",
+          "label": {
+            "ru": "дня на онбординг",
+            "en": "day onboarding"
+          }
+        },
+        {
+          "value": "9",
+          "label": {
+            "ru": "команд",
+            "en": "teams"
+          }
+        },
+        {
+          "value": "80%",
+          "label": {
+            "ru": "self-service",
+            "en": "self-service"
+          }
+        }
+      ],
+      "rating": {
+        "histogram": [
+          19,
+          6,
+          2,
+          1,
+          0
+        ]
+      },
+      "cover": "/assets/img/covers/internal-platform.svg"
+    },
+    {
+      "slug": "security-baseline",
+      "featured": false,
+      "year": 2025,
+      "client": "Sibline Cloud",
+      "accent": "#5eead4",
+      "title": {
+        "ru": "Безопасность по умолчанию",
+        "en": "Security by default"
+      },
+      "summary": {
+        "ru": "SLSA 3, подпись образов и политики Kyverno, которые не мешают релизам.",
+        "en": "SLSA 3, image signing and Kyverno policies that don't block releases."
+      },
+      "description": {
+        "ru": [
+          "Аудит показал знакомое: секреты в переменных пайплайна, образы без подписи, политики, которые включали после инцидента. Безопасность работала как тормоз, а не как рельсы.",
+          "Встроил проверки в пайплайн: SBOM, Trivy, cosign и подпись по умолчанию, admission-политики Kyverno в audit-режиме, затем в enforce. Добавил ротацию секретов через Vault. Теперь небезопасный образ просто не доходит до кластера — и это никого не удивляет."
+        ],
+        "en": [
+          "The audit found the usual: secrets in pipeline variables, unsigned images, policies switched on after an incident. Security acted as a brake, not as rails.",
+          "I moved the checks into the pipeline: SBOM, Trivy, cosign and signing by default; Kyverno admission policies in audit mode first, then enforce. Added secret rotation via Vault. An unsafe image simply never reaches the cluster now — and nobody is surprised."
+        ]
+      },
+      "role": {
+        "ru": "Supply chain security, policy-as-code",
+        "en": "Supply-chain security, policy-as-code"
+      },
+      "stack": [
+        "Kyverno",
+        "Trivy",
+        "cosign",
+        "Vault",
+        "SLSA"
+      ],
+      "metrics": [
+        {
+          "value": "SLSA 3",
+          "label": {
+            "ru": "уровень сборки",
+            "en": "build level"
+          }
+        },
+        {
+          "value": "100%",
+          "label": {
+            "ru": "образов подписаны",
+            "en": "images signed"
+          }
+        },
+        {
+          "value": "0",
+          "label": {
+            "ru": "критичных CVE",
+            "en": "critical CVEs"
+          }
+        }
+      ],
+      "rating": {
+        "histogram": [
+          16,
+          6,
+          3,
+          1,
+          0
+        ]
+      },
+      "cover": "/assets/img/covers/security-baseline.svg"
+    },
+    {
+      "slug": "edge-delivery",
+      "featured": false,
+      "year": 2024,
+      "client": "Redpeak",
+      "accent": "#60a5fa",
+      "title": {
+        "ru": "Edge-доставка: p95 — 130 мс",
+        "en": "Edge delivery: 130 ms p95"
+      },
+      "summary": {
+        "ru": "Мультирегиональная отдача, кэш на периферии и graceful failover между зонами.",
+        "en": "Multi-region delivery, edge caching and graceful failover between zones."
+      },
+      "description": {
+        "ru": [
+          "Сайт открывался за 420 мс на p95, а в часы распродаж — заметно хуже. Каждый регион жил сам по себе, и отказ одной зоны превращался в деградацию для всех.",
+          "Перенёс статику и часть API на edge, настроил stale-while-revalidate и health-based failover между регионами. Добавил синтетический мониторинг из 12 точек. p95 упал до 130 мс, доступность держится на 99.99% даже в распродажи."
+        ],
+        "en": [
+          "The site loaded in 420 ms at p95, and noticeably worse during sales. Each region lived on its own, so one zone failing degraded everyone.",
+          "I moved static assets and part of the API to the edge, set up stale-while-revalidate and health-based failover between regions, and added synthetic monitoring from 12 locations. p95 dropped to 130 ms; availability holds at 99.99% even during sales."
+        ]
+      },
+      "role": {
+        "ru": "Edge-архитектура, кэш, мониторинг",
+        "en": "Edge architecture, caching, monitoring"
+      },
+      "stack": [
+        "CloudFront",
+        "Lambda@Edge",
+        "Redis",
+        "Terraform"
+      ],
+      "metrics": [
+        {
+          "value": "130 мс",
+          "label": {
+            "ru": "p95",
+            "en": "p95"
+          }
+        },
+        {
+          "value": "12",
+          "label": {
+            "ru": "регионов",
+            "en": "regions"
+          }
+        },
+        {
+          "value": "99.99%",
+          "label": {
+            "ru": "доступность",
+            "en": "availability"
+          }
+        }
+      ],
+      "rating": {
+        "histogram": [
+          15,
+          6,
+          3,
+          1,
+          0
+        ]
+      },
+      "cover": "/assets/img/covers/edge-delivery.svg"
+    },
+    {
+      "slug": "on-call-2",
+      "featured": false,
+      "year": 2026,
+      "client": "Sibline Cloud",
+      "accent": "#f472b6",
+      "title": {
+        "ru": "On-call 2.0: тишина в чатах",
+        "en": "On-call 2.0: quiet channels"
+      },
+      "summary": {
+        "ru": "Алерты по error budget вместо каждого всплеска CPU: −71% шума и вдвое меньше ночных подъёмов.",
+        "en": "Error-budget alerts instead of every CPU spike: 71% less noise and half as many night wake-ups."
+      },
+      "description": {
+        "ru": [
+          "Ночью звонили из-за 82% загрузки CPU, а реальный инцидент мог потеряться среди сотни уведомлений. Команда выгорала, и это было дороже любого простоя.",
+          "Перевёл алерты на SLO и burn rate: страница — только когда бюджет реально горит, остальное — тикет на утро. Добавил runbook-и, дежурный чек-лист и ротацию с компенсацией. Шум упал на 71%, ночные подъёмы — вдвое, а P1 стали находить быстрее."
+        ],
+        "en": [
+          "We got paged for 82% CPU while real incidents could drown in a hundred notifications. The team was burning out, and that cost more than any outage.",
+          "I moved alerting to SLOs and burn rate: page only when the budget actually burns, everything else is a morning ticket. Added runbooks, an on-call checklist and compensated rotation. Noise dropped 71%, night wake-ups halved, and P1s are found faster."
+        ]
+      },
+      "role": {
+        "ru": "SLO-алертинг, процесс дежурств",
+        "en": "SLO alerting, on-call process"
+      },
+      "stack": [
+        "Prometheus",
+        "Alertmanager",
+        "Grafana",
+        "PagerDuty"
+      ],
+      "metrics": [
+        {
+          "value": "−71%",
+          "label": {
+            "ru": "алертов",
+            "en": "alerts"
+          }
+        },
+        {
+          "value": "×2",
+          "label": {
+            "ru": "меньше ночных",
+            "en": "fewer night pages"
+          }
+        },
+        {
+          "value": "100%",
+          "label": {
+            "ru": "с runbook",
+            "en": "with runbooks"
+          }
+        }
+      ],
+      "rating": {
+        "histogram": [
+          18,
+          7,
+          2,
+          0,
+          0
+        ]
+      },
+      "cover": "/assets/img/covers/on-call-2.svg"
+    }
+  ]
+}

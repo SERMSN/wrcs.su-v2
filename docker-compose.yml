@@ -1,0 +1,17 @@
+name: wrcs-dev
+
+services:
+  app:
+    build:
+      context: docker/dev
+    image: wrcs-dev:latest
+    container_name: wrcs-dev
+    user: "${DOCKER_UID:-1000}:${DOCKER_GID:-1000}"
+    working_dir: /app
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/app
+    environment:
+      COMPOSER_HOME: /tmp/composer
+    restart: unless-stopped

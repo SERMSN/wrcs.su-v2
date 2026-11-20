@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none" role="img" aria-label="Sibline Cloud — case cover">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="800" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#070b10"/>
+      <stop offset="1" stop-color="#172436"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(300 250) rotate(45) scale(520)">
+      <stop stop-color="#3d6193" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#3d6193" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1010 140) rotate(120) scale(380)">
+      <stop stop-color="#6aa8ff" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#6aa8ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vignette" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(600 400) rotate(90) scale(640 760)">
+      <stop stop-color="#04070b" stop-opacity="0"/>
+      <stop offset="1" stop-color="#04070b" stop-opacity="0.55"/>
+    </radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" stroke="#dce9ff" stroke-opacity="0.05"/>
+    </pattern>
+    <linearGradient id="fade" x1="120" y1="0" x2="1080" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6aa8ff" stop-opacity="0"/>
+      <stop offset="0.25" stop-color="#6aa8ff" stop-opacity="0.9"/>
+      <stop offset="0.75" stop-color="#6aa8ff" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#6aa8ff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect width="1200" height="800" fill="url(#grid)"/>
+  <rect width="1200" height="800" fill="url(#glow)"/>
+  <rect width="1200" height="800" fill="url(#glow2)"/>
+
+  <circle cx="1010" cy="150" r="150" stroke="#6aa8ff" stroke-opacity="0.16"/>
+  <circle cx="1010" cy="150" r="230" stroke="#6aa8ff" stroke-opacity="0.10"/>
+  <circle cx="1010" cy="150" r="320" stroke="#6aa8ff" stroke-opacity="0.06"/>
+
+  <line x1="1043" y1="508" x2="764" y2="336" stroke="#6aa8ff" stroke-opacity="0.12" stroke-width="1"/><line x1="553" y1="409" x2="764" y2="336" stroke="#6aa8ff" stroke-opacity="0.12" stroke-width="1"/><line x1="150" y1="393" x2="367" y2="534" stroke="#6aa8ff" stroke-opacity="0.12" stroke-width="1"/>
+  <path d="M150 393 C220 344, 182 549, 252 500 C322 451, 297 583, 367 534 C437 485, 483 458, 553 409 C623 360, 546 324, 616 275 C686 226, 694 385, 764 336 C834 287, 837 509, 907 460 C977 411, 973 557, 1043 508" stroke="url(#fade)" stroke-width="1.6" stroke-dasharray="7 9" stroke-linecap="round"/>
+  <circle cx="150" cy="393" r="30" fill="#6aa8ff" fill-opacity="0.10"/><circle cx="150" cy="393" r="9.0" fill="none" stroke="#6aa8ff" stroke-opacity="0.55"/><circle cx="150" cy="393" r="3.5" fill="#6aa8ff"/><circle cx="252" cy="500" r="30" fill="#6aa8ff" fill-opacity="0.10"/><circle cx="252" cy="500" r="9.0" fill="none" stroke="#6aa8ff" stroke-opacity="0.55"/><circle cx="252" cy="500" r="3.5" fill="#6aa8ff"/><circle cx="367" cy="534" r="30" fill="#6aa8ff" fill-opacity="0.10"/><circle cx="367" cy="534" r="9.0" fill="none" stroke="#6aa8ff" stroke-opacity="0.55"/><circle cx="367" cy="534" r="3.5" fill="#6aa8ff"/><circle cx="553" cy="409" r="30" fill="#6aa8ff" fill-opacity="0.10"/><circle cx="553" cy="409" r="9.0" fill="none" stroke="#6aa8ff" stroke-opacity="0.55"/><circle cx="553" cy="409" r="3.5" fill="#6aa8ff"/><circle cx="616" cy="275" r="51" fill="#6aa8ff" fill-opacity="0.10"/><circle cx="616" cy="275" r="15.0" fill="none" stroke="#6aa8ff" stroke-opacity="0.55"/><circle cx="616" cy="275" r="5.5" fill="#6aa8ff"/><circle cx="764" cy="336" r="30" fill="#6aa8ff" fill-opacity="0.10"/><circle cx="764" cy="336" r="9.0" fill="none" stroke="#6aa8ff" stroke-opacity="0.55"/><circle cx="764" cy="336" r="3.5" fill="#6aa8ff"/><circle cx="907" cy="460" r="30" fill="#6aa8ff" fill-opacity="0.10"/><circle cx="907" cy="460" r="9.0" fill="none" stroke="#6aa8ff" stroke-opacity="0.55"/><circle cx="907" cy="460" r="3.5" fill="#6aa8ff"/><circle cx="1043" cy="508" r="30" fill="#6aa8ff" fill-opacity="0.10"/><circle cx="1043" cy="508" r="9.0" fill="none" stroke="#6aa8ff" stroke-opacity="0.55"/><circle cx="1043" cy="508" r="3.5" fill="#6aa8ff"/>
+
+  <text x="1180" y="742" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="230" font-weight="700" fill="#6aa8ff" fill-opacity="0.07" letter-spacing="-14">02</text>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" letter-spacing="3">
+    <circle cx="66" cy="62" r="4" fill="#6aa8ff"/>
+    <text x="82" y="68" font-size="13" fill="#dbe6f4" fill-opacity="0.65">WRCS.OPS</text>
+    <text x="1134" y="68" text-anchor="end" font-size="12" fill="#dbe6f4" fill-opacity="0.45">CASE / 2025</text>
+    <text x="66" y="756" font-size="11" fill="#6aa8ff" fill-opacity="0.75">// Sibline Cloud</text>
+  </g>
+
+  <rect width="1200" height="800" fill="url(#vignette)"/>
+  <rect x="0.5" y="0.5" width="1199" height="799" stroke="#dce9ff" stroke-opacity="0.08"/>
+</svg>

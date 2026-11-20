@@ -1,0 +1,175 @@
+name: Deploy Production
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Test & deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    env:
+      REMOTE_APP_DIR: /var/www/wrcs.su
+      APP_URL: ${{ vars.APP_URL || 'https://wrcs.su' }}
+      DEPLOY_HOST: ${{ secrets.DEPLOY_HOST || vars.DEPLOY_HOST }}
+      DEPLOY_PORT: ${{ secrets.DEPLOY_PORT || vars.DEPLOY_PORT || '22' }}
+      DEPLOY_USER: ${{ secrets.DEPLOY_USER || vars.DEPLOY_USER }}
+      DEPLOY_PASSWORD: ${{ secrets.DEPLOY_PASSWORD || vars.DEPLOY_PASSWORD }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP 8.4
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, xml, curl, fileinfo, openssl, pdo, tokenizer
+          coverage: none
+          tools: composer:v2
+
+      - name: Prepare environment
+        run: cp .env.example .env
+
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Generate application key
+        run: php artisan key:generate --ansi
+
+      - name: Run tests
+        run: php artisan test
+
+      - name: Build production vendor
+        run: composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Install deploy tools
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq sshpass rsync
+
+      - name: Upload files and deploy
+        run: |
+          set -euo pipefail
+
+          for name in DEPLOY_HOST DEPLOY_USER DEPLOY_PASSWORD; do
+            if [ -z "${!name:-}" ]; then
+              echo "::error::$name is empty. Add it to repository secrets or variables."
+              exit 1
+            fi
+          done
+
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          ssh_opts=(-p "$DEPLOY_PORT" -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20)
+          export SSHPASS="$DEPLOY_PASSWORD"
+
+          sshpass -e ssh "${ssh_opts[@]}" "$DEPLOY_USER@$DEPLOY_HOST" \
+            "mkdir -p '$REMOTE_APP_DIR' '$REMOTE_APP_DIR/storage/framework/cache' '$REMOTE_APP_DIR/storage/framework/sessions' '$REMOTE_APP_DIR/storage/framework/views' '$REMOTE_APP_DIR/storage/logs' '$REMOTE_APP_DIR/bootstrap/cache' '$REMOTE_APP_DIR/data'"
+
+          sshpass -e rsync -az \
+            -e "ssh -p $DEPLOY_PORT -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20" \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            --exclude '.env' \
+            --exclude '.cache/' \
+            --exclude '.docker/' \
+            --exclude 'node_modules/' \
+            --exclude 'docs/' \
+            --exclude 'tests/' \
+            --exclude 'scripts/' \
+            --exclude 'docker/' \
+            --exclude 'deploy/' \
+            --exclude 'docker-compose.yml' \
+            --exclude 'README.md' \
+            --exclude 'phpunit.xml' \
+            --exclude '.editorconfig' \
+            --exclude '.gitignore' \
+            --exclude '.gitattributes' \
+            --exclude 'data/ratings.json' \
+            --exclude 'storage/' \
+            --exclude 'bootstrap/cache/' \
+            --exclude '.phpunit.result.cache' \
+            ./ "$DEPLOY_USER@$DEPLOY_HOST:$REMOTE_APP_DIR/"
+
+          sshpass -e ssh "${ssh_opts[@]}" "$DEPLOY_USER@$DEPLOY_HOST" \
+            "REMOTE_APP_DIR='$REMOTE_APP_DIR' APP_URL='$APP_URL' bash -s" <<'REMOTE'
+          set -euo pipefail
+          cd "$REMOTE_APP_DIR"
+
+          if [ ! -f .env ]; then
+            cp .env.example .env
+          fi
+
+          sed -i 's/^APP_ENV=.*/APP_ENV=production/' .env
+          sed -i 's/^APP_DEBUG=.*/APP_DEBUG=false/' .env
+          sed -i "s|^APP_URL=.*|APP_URL=${APP_URL}|" .env
+          sed -i 's/^LOG_LEVEL=.*/LOG_LEVEL=warning/' .env
+          grep -q '^SESSION_SECURE_COOKIE=' .env \
+            && sed -i 's/^SESSION_SECURE_COOKIE=.*/SESSION_SECURE_COOKIE=true/' .env \
+            || printf 'SESSION_SECURE_COOKIE=true\n' >> .env
+
+          key="$(grep -E '^APP_KEY=' .env | head -1 | cut -d= -f2- || true)"
+          case "$key" in
+            base64:*) [ "${#key}" -ge 40 ] || key="" ;;
+            *) key="" ;;
+          esac
+          if [ -z "$key" ]; then
+            key="base64:$(php -r 'echo base64_encode(random_bytes(32));')"
+            if grep -qE '^APP_KEY=' .env; then
+              sed -i "s|^APP_KEY=.*|APP_KEY=${key}|" .env
+            else
+              printf 'APP_KEY=%s\n' "$key" >> .env
+            fi
+          fi
+          chmod 640 .env
+
+          if ! php -r 'exit(PHP_VERSION_ID >= 80400 ? 0 : 1);'; then
+            echo "::error title=PHP version::$(php -v 2>&1 | head -1)"
+            exit 1
+          fi
+
+          mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views storage/logs bootstrap/cache data
+          [ -f data/ratings.json ] || printf '{\n  "version": 1,\n  "votes": {}\n}\n' > data/ratings.json
+
+          if command -v setfacl >/dev/null 2>&1 && id www-data >/dev/null 2>&1; then
+            setfacl -R -m u:www-data:rwX storage bootstrap/cache data
+            find storage bootstrap/cache data -type d -exec setfacl -m d:u:www-data:rwX {} +
+            setfacl -m u:www-data:r .env
+          else
+            chmod -R 777 storage bootstrap/cache data
+            chmod 644 .env
+          fi
+
+          if ! clear_output="$(php artisan optimize:clear 2>&1)"; then
+            msg="$(printf '%s' "$clear_output" | tail -n 20 | tr '\n' '|' | tr -d '\r' | sed 's/%/%25/g' | cut -c1-3000)"
+            echo "::error title=Artisan optimize:clear failed::${msg}"
+            exit 1
+          fi
+
+          if ! optimize_output="$(php artisan optimize 2>&1)"; then
+            msg="$(printf '%s' "$optimize_output" | tail -n 20 | tr '\n' '|' | tr -d '\r' | sed 's/%/%25/g' | cut -c1-3000)"
+            echo "::error title=Artisan optimize failed::${msg}"
+            exit 1
+          fi
+          REMOTE
+
+      - name: Smoke test
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 10); do
+            code="$(curl -s -o /dev/null -w '%{http_code}' --max-time 10 "$APP_URL/up" || true)"
+            echo "attempt $attempt: $code"
+            [ "$code" = "200" ] && exit 0
+            sleep 3
+          done
+          echo "::error::$APP_URL/up is not 200 — check nginx root and storage/logs/laravel.log"
+          exit 1

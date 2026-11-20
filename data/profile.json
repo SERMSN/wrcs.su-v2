@@ -1,0 +1,351 @@
+{
+  "identity": {
+    "name": {
+      "ru": "wrcs.ops",
+      "en": "wrcs.ops"
+    },
+    "nickname": "WRCS",
+    "handle": "wrcs",
+    "brand": "wrcs.ops",
+    "role": {
+      "ru": "Lead DevOps / SRE инженер",
+      "en": "Lead DevOps / SRE Engineer"
+    },
+    "tagline": {
+      "ru": "Собираю пайплайны, которые не страшно оставить на выходные.",
+      "en": "I build pipelines you can safely leave for the weekend."
+    },
+    "location": {
+      "ru": "Красноярск, Россия",
+      "en": "Krasnoyarsk, Russia"
+    },
+    "timezone": "UTC+7",
+    "status": {
+      "ru": "Открыт к предложениям",
+      "en": "Open to offers"
+    },
+    "available": true,
+    "since": 2023,
+    "headline": {
+      "ru": "Инфраструктура без сюрпризов",
+      "en": "Infrastructure without surprises"
+    }
+  },
+  "bio": {
+    "ru": [
+      "Три года строю инфраструктуру, которую не замечают — и это лучший комплимент. Успел пройти путь от ночных дежурств и bash-скриптов до платформы на 40+ сервисов: деплой стал скучной рутиной, а инциденты закрываются раньше, чем о них узнаёт поддержка.",
+      "Люблю, когда сложное становится простым: один манифест вместо десяти инструкций, понятный SLO вместо героического тушения пожаров. Верю, что внутренняя платформа — это продукт, а не набор YAML-файлов."
+    ],
+    "en": [
+      "Three years building infrastructure nobody notices — which is the best compliment there is. I went from night shifts and bash scripts to a platform serving 40+ services: deploys became boring routine and incidents close before support ever hears about them.",
+      "I like it when hard things become simple: one manifest instead of ten runbooks, a clear SLO instead of heroic firefighting. I believe an internal platform is a product, not a pile of YAML files."
+    ]
+  },
+  "principles": [
+    {
+      "ru": "Скучный деплой — хороший деплой.",
+      "en": "A boring deploy is a good deploy."
+    },
+    {
+      "ru": "Платформа — это продукт, у него есть пользователи.",
+      "en": "A platform is a product, and it has users."
+    },
+    {
+      "ru": "SLO важнее героизма.",
+      "en": "SLOs beat heroics."
+    }
+  ],
+  "contacts": [
+    {
+      "type": "email",
+      "label": "hello@wrcs.ops",
+      "href": "mailto:hello@wrcs.ops"
+    },
+    {
+      "type": "telegram",
+      "label": "@wrcs",
+      "href": "https://t.me/wrcs"
+    },
+    {
+      "type": "github",
+      "label": "github.com/wrcs",
+      "href": "https://github.com/wrcs"
+    },
+    {
+      "type": "linkedin",
+      "label": "linkedin.com/in/wrcs",
+      "href": "https://linkedin.com/in/wrcs"
+    }
+  ],
+  "metrics": [
+    {
+      "value": "99.95",
+      "suffix": "%",
+      "label": {
+        "ru": "Доступность",
+        "en": "Uptime"
+      },
+      "hint": {
+        "ru": "SLA за 12 месяцев",
+        "en": "SLA over 12 months"
+      },
+      "spark": [
+        70,
+        74,
+        72,
+        79,
+        77,
+        83,
+        81,
+        86,
+        84,
+        88,
+        87,
+        91
+      ]
+    },
+    {
+      "value": "420",
+      "suffix": "",
+      "label": {
+        "ru": "Релизов в год",
+        "en": "Releases / year"
+      },
+      "hint": {
+        "ru": "Без ручных окон",
+        "en": "Zero manual windows"
+      },
+      "spark": [
+        34,
+        40,
+        46,
+        44,
+        56,
+        61,
+        65,
+        63,
+        72,
+        78,
+        83,
+        90
+      ]
+    },
+    {
+      "value": "18",
+      "suffix": {
+        "ru": "мин",
+        "en": "min"
+      },
+      "label": {
+        "ru": "MTTR",
+        "en": "MTTR"
+      },
+      "hint": {
+        "ru": "Было 47 минут",
+        "en": "Down from 47 min"
+      },
+      "spark": [
+        92,
+        86,
+        82,
+        75,
+        68,
+        61,
+        54,
+        47,
+        41,
+        34,
+        27,
+        22
+      ]
+    },
+    {
+      "value": "−31",
+      "suffix": "%",
+      "label": {
+        "ru": "Облачные затраты",
+        "en": "Cloud spend"
+      },
+      "hint": {
+        "ru": "FinOps за 2 квартала",
+        "en": "FinOps in 2 quarters"
+      },
+      "spark": [
+        90,
+        87,
+        88,
+        80,
+        76,
+        73,
+        69,
+        66,
+        63,
+        61,
+        59,
+        56
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "Kubernetes",
+      "level": 84,
+      "tier": "expert"
+    },
+    {
+      "name": "Linux",
+      "level": 88,
+      "tier": "expert"
+    },
+    {
+      "name": "CI/CD · GitLab · Actions",
+      "level": 86,
+      "tier": "expert"
+    },
+    {
+      "name": "Terraform",
+      "level": 80,
+      "tier": "advanced"
+    },
+    {
+      "name": "GitOps · Argo CD",
+      "level": 78,
+      "tier": "advanced"
+    },
+    {
+      "name": "AWS",
+      "level": 76,
+      "tier": "advanced"
+    },
+    {
+      "name": "Observability · Prometheus · Grafana",
+      "level": 74,
+      "tier": "advanced"
+    },
+    {
+      "name": "Security · OPA · Kyverno",
+      "level": 64,
+      "tier": "solid"
+    },
+    {
+      "name": "Python",
+      "level": 70,
+      "tier": "solid"
+    },
+    {
+      "name": "Go",
+      "level": 52,
+      "tier": "solid"
+    }
+  ],
+  "timeSplit": [
+    {
+      "key": "platform",
+      "value": 42,
+      "label": {
+        "ru": "Платформа и автоматизация",
+        "en": "Platform & automation"
+      }
+    },
+    {
+      "key": "reliability",
+      "value": 26,
+      "label": {
+        "ru": "Надёжность и SRE",
+        "en": "Reliability & SRE"
+      }
+    },
+    {
+      "key": "security",
+      "value": 16,
+      "label": {
+        "ru": "Безопасность",
+        "en": "Security"
+      }
+    },
+    {
+      "key": "finops",
+      "value": 16,
+      "label": {
+        "ru": "FinOps",
+        "en": "FinOps"
+      }
+    }
+  ],
+  "experience": [
+    {
+      "period": "2025 — сейчас",
+      "periodEn": "2025 — now",
+      "company": "Sibline Cloud",
+      "role": {
+        "ru": "Lead DevOps / SRE",
+        "en": "Lead DevOps / SRE"
+      },
+      "summary": {
+        "ru": "Платформа для 40+ сервисов: EKS, Argo CD, единый слой наблюдаемости. Веду SRE-практики и релизный процесс для трёх продуктовых команд.",
+        "en": "Platform for 40+ services: EKS, Argo CD and a single observability layer. I own SRE practices and the release process for three product teams."
+      },
+      "stack": [
+        "EKS",
+        "Argo CD",
+        "Terraform",
+        "Prometheus"
+      ]
+    },
+    {
+      "period": "2024 — 2025",
+      "periodEn": "2024 — 2025",
+      "company": "Redpeak",
+      "role": {
+        "ru": "DevOps Engineer",
+        "en": "DevOps Engineer"
+      },
+      "summary": {
+        "ru": "E-commerce на 3 млн визитов в сутки: мультирегиональный failover, кэш-слой, снижение p95 с 420 до 130 мс.",
+        "en": "E-commerce doing 3M visits a day: multi-region failover, a cache layer, and p95 down from 420 to 130 ms."
+      },
+      "stack": [
+        "AWS",
+        "CloudFront",
+        "Terraform",
+        "Redis"
+      ]
+    },
+    {
+      "period": "2023 — 2024",
+      "periodEn": "2023 — 2024",
+      "company": "Forge Studio",
+      "role": {
+        "ru": "DevOps Engineer",
+        "en": "DevOps Engineer"
+      },
+      "summary": {
+        "ru": "Первые пайплайны и контейнеры: 20+ клиентских проектов, переход с ручных деплоев на CI/CD.",
+        "en": "First pipelines and containers: 20+ client projects, moving from manual deploys to CI/CD."
+      },
+      "stack": [
+        "Docker",
+        "GitLab CI",
+        "Ansible",
+        "Nginx"
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "name": "CKA",
+      "org": "CNCF",
+      "year": 2025
+    },
+    {
+      "name": "Terraform Associate",
+      "org": "HashiCorp",
+      "year": 2024
+    },
+    {
+      "name": "AWS SAA",
+      "org": "Amazon Web Services",
+      "year": 2024
+    }
+  ]
+}
